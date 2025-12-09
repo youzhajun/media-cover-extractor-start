@@ -79,7 +79,49 @@ sudo yum install libreoffice
 soffice --version
 ```
 
-### 3. Maven 依赖引入
+### 3. 添加 JitPack 仓库
+
+本项目已发布到 JitPack，使用前需要先添加 JitPack 仓库到你的 `pom.xml`：
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+**完整 pom.xml 示例：**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>your-project</artifactId>
+    <version>1.0.0</version>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- 添加依赖 -->
+    </dependencies>
+</project>
+```
+
+**JitPack 页面：** [https://jitpack.io/#youzhajun/media-cover-extractor-start](https://jitpack.io/#youzhajun/media-cover-extractor-start)
+
+### 4. Maven 依赖引入
 
 根据需要选择性引入模块依赖：
 
@@ -138,7 +180,7 @@ soffice --version
 </dependency>
 ```
 
-### 4. 配置文件
+### 5. 配置文件
 
 在 `application.yml` 或 `application.properties` 中配置：
 
@@ -164,6 +206,7 @@ media:
       width: 800                                       # 图片宽度（当strategy为SCALE或CROP时有效）
       height: 600                                      # 图片高度（当strategy为SCALE或CROP时有效）
       directory: ${java.io.tmpdir}                    # 输出目录，默认系统临时目录
+      use-date-subdirectory: true                      # 是否启用日期子目录（年/月/日），默认false
 ```
 
 #### application.properties 示例
@@ -204,7 +247,7 @@ media:
       directory: /tmp/covers                         # Linux临时目录
 ```
 
-### 5. 使用示例
+### 6. 使用示例
 
 ```java
 import com.github.youzhajun.autoconfigure.service.MediaCoverExtractorService;
@@ -273,6 +316,7 @@ public class YourService {
 | media.cover.output.width | Integer | 否  | 无                | 图片宽度（strategy为SCALE或CROP时必填）     |
 | media.cover.output.height | Integer | 否  | 无                | 图片高度（strategy为SCALE或CROP时必填）     |
 | media.cover.output.directory | String | 否  | java.io.tmpdir | 输出目录，默认系统临时目录                     |
+| media.cover.output.use-date-subdirectory | boolean | 否  | false | 是否启用日期子目录（年/月/日），启用后会在配置目录下创建日期层级 |
 
 **图片处理策略说明：**
 
