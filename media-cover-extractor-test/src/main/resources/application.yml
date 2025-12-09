@@ -1,0 +1,22 @@
+media:
+  cover:
+    ffmpeg:
+      enabled: true
+      # path: D:/ffmpeg/bin/ffmpeg.exe  # Windows示例，如果ffmpeg已加入环境变量可不配置
+      # path: /usr/local/bin/ffmpeg     # Linux示例
+    libreoffice:
+      enabled: true
+      path: C:/Program Files/LibreOffice/program/soffice.exe  # 需根据实际安装路径配置
+      # path: /usr/bin/soffice  # Linux示例
+    output:
+      format: png
+      strategy: SCALE  # SCALE-等比例缩放, CROP-强制裁剪, NONE-不处理
+      width: 800
+      height: 600
+      directory: d:/temp/cover
+      use-date-subdirectory: true  # 是否启用日期子目录（年/月/日），默认false
+
+logging:
+  level:
+    com.github.youzhajun: DEBUG
+
