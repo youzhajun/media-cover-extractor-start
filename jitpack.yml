@@ -1,0 +1,7 @@
+# jitpack.yml
+jdk:
+  - openjdk17
+before_install:
+  - echo "开始构建..."
+install:
+  - mvn clean install -DskipTests
